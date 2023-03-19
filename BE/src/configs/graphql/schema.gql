@@ -1,0 +1,337 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Auth {
+  """Email user"""
+  email: String!
+
+  """Role user"""
+  role: String!
+
+  """Id user"""
+  userId: Int!
+}
+
+type Cat {
+  file: String!
+}
+
+type Category {
+  _count: CountCategoryEntity
+
+  """created field"""
+  createdAt: String!
+
+  """description field"""
+  description: String
+
+  """Id field"""
+  id: Int!
+
+  """Name field"""
+  name: String!
+  products: [ProductEntity!]
+
+  """updated field"""
+  updatedAt: String!
+}
+
+type CategoryEntity {
+  """created field"""
+  createdAt: String!
+
+  """description field"""
+  description: String
+
+  """Id field"""
+  id: Int!
+
+  """Name field"""
+  name: String!
+
+  """updated field"""
+  updatedAt: String!
+}
+
+input ChangePasswordInput {
+  confirmPassword: String!
+  email: String!
+  newPassword: String!
+}
+
+type CountCategoryEntity {
+  products: Int!
+}
+
+input CreateCategoryInput {
+  description: String
+  name: String!
+}
+
+input CreateProductInput {
+  categoryId: Int!
+  description: String
+  detail: String
+  name: String!
+  price: Float!
+  quantity: Int!
+}
+
+input CreateRegisterAccountInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateUserInput {
+  email: String
+  firstname: String
+  lastname: String
+  password: String
+  role: String
+  status: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DetailUserResponse {
+  address: String
+  createdAt: DateTime!
+  dob: DateTime
+  email: String!
+  firstname: String
+  hashedPassword: String
+
+  """Id user"""
+  id: Int
+  lastname: String
+  role: String
+  status: String
+  updatedAt: DateTime!
+}
+
+type ListProductResponse {
+  data: [Product!]!
+  meta: MetaListType!
+}
+
+type ListUserResponse {
+  data: [User!]!
+  meta: MetaListType!
+}
+
+type LogoutResponse {
+  isLoggedOut: Boolean!
+}
+
+type MetaListType {
+  currentPage: Int!
+  lastPage: Int!
+  next: Int
+  perPage: Int!
+  prev: Int
+  total: Int!
+}
+
+type Mutation {
+  changePass(changePasswordInput: ChangePasswordInput!, updateUserInput: UpdateUserInput): User!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  createRegisterAccount(createRegisterAccountInput: CreateRegisterAccountInput!): RegisterAccount!
+  createUser(createUserInput: CreateUserInput!): DetailUserResponse!
+  login(signinAuth: SigninInput!): SignResponse!
+  logout(id: Int!): LogoutResponse!
+  phoneConf(phoneNumber: String!, veri: String!): String!
+  phoneVer(phoneNumber: String!): String!
+  removeCategory(id: Int!): Category!
+  removeProduct(id: Int!): Product!
+  removeRegisterAccount(id: Int!): RegisterAccount!
+  removeUser(id: Int!): DetailUserResponse!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  updateProfile(updateProfileInput: UpdateProfileInput!): DetailUserResponse!
+  updateRegisterAccount(updateRegisterAccountInput: UpdateRegisterAccountInput!): RegisterAccount!
+  updateUser(updateUserInput: UpdateUserInput!): DetailUserResponse!
+  upload(file: Upload!): Cat!
+}
+
+type NewTokensResponse {
+  accessToken: String!
+  expiredAt: Float!
+  refreshToken: String!
+}
+
+input PaginateInput {
+  createAt: String
+  page: Float!
+  perPage: Float!
+}
+
+type Product {
+  category: CategoryEntity
+
+  """Id field"""
+  categoryId: Int!
+
+  """created field"""
+  createdAt: String!
+
+  """description field"""
+  description: String
+
+  """detail field"""
+  detail: String
+
+  """Id field"""
+  id: Int!
+
+  """Name field"""
+  name: String!
+
+  """Price field"""
+  price: Float
+
+  """Quantity field"""
+  quantity: Float
+
+  """updated field"""
+  updatedAt: String!
+}
+
+type ProductEntity {
+  """Id field"""
+  categoryId: Int!
+
+  """created field"""
+  createdAt: String!
+
+  """description field"""
+  description: String
+
+  """detail field"""
+  detail: String
+
+  """Id field"""
+  id: Int!
+
+  """Name field"""
+  name: String!
+
+  """Price field"""
+  price: Float
+
+  """Quantity field"""
+  quantity: Float
+
+  """updated field"""
+  updatedAt: String!
+}
+
+type Query {
+  categories: [Category!]!
+  category(id: Int!): Category!
+  email: String!
+  getNewTokens: NewTokensResponse!
+  product(id: Int!): Product!
+  products(paginateInput: PaginateInput!, queryListProductInput: QueryListProductInput): ListProductResponse!
+  profile: DetailUserResponse!
+  registerAccount(id: Int!): RegisterAccount!
+  user(id: Int!): DetailUserResponse!
+  users(paginateInput: PaginateInput!, queryListUserInput: QueryListUserInput): ListUserResponse!
+}
+
+input QueryListProductInput {
+  categoryId: Float
+  endDate: DateTime
+  name: String
+  startDate: DateTime
+}
+
+input QueryListUserInput {
+  email: String
+  endDate: DateTime
+  lastName: String
+  name: String
+  startDate: DateTime
+}
+
+type RegisterAccount {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type SignResponse {
+  accessToken: String!
+  expiredAt: Float!
+  refreshToken: String!
+  user: Auth!
+}
+
+input SigninInput {
+  email: String!
+  password: String!
+}
+
+input UpdateCategoryInput {
+  description: String
+  id: Int!
+  name: String
+}
+
+input UpdateProductInput {
+  categoryId: Int
+  description: String
+  detail: String
+  id: Int!
+  name: String
+  price: Float
+  quantity: Int
+}
+
+input UpdateProfileInput {
+  email: String
+  firstname: String
+  lastname: String
+  password: String
+  role: String
+  status: String
+}
+
+input UpdateRegisterAccountInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateUserInput {
+  email: String
+  firstname: String
+  id: Int
+  lastname: String
+  password: String
+  role: String
+  status: String
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type User {
+  address: String
+  createdAt: DateTime!
+  dob: DateTime
+  email: String!
+  firstname: String
+  hashedPassword: String
+  hashedRefreshToken: String
+
+  """Id user"""
+  id: Int
+  lastname: String
+  role: String
+  status: String
+  updatedAt: DateTime!
+}

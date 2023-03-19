@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x", "debian-openssl-3.0.x", "linux-musl", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 Int       @id @default(autoincrement())
+  firstname          String
+  lastname           String
+  email              String    @unique
+  hashedPassword     String
+  hashedRefreshToken String?
+  role               RoleE?    @default(USER)
+  address            String?
+  dob                DateTime?
+  status             Status?   @default(ACTIVE)
+  updatedAt          DateTime  @updatedAt
+  createdAt          DateTime  @default(now())
+}
+
+enum RoleE {
+  USER
+  ADMIN
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String?
+  detail      String?
+  quantity    Int      @default(0)
+  price       Float    @default(0)
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now())
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  updatedAt   DateTime  @default(now()) @updatedAt
+  createdAt   DateTime  @default(now())
+  products    Product[]
+}
