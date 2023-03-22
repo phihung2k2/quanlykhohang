@@ -144,8 +144,6 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): DetailUserResponse!
   login(signinAuth: SigninInput!): SignResponse!
   logout(id: Int!): LogoutResponse!
-  phoneConf(phoneNumber: String!, veri: String!): String!
-  phoneVer(phoneNumber: String!): String!
   removeCategory(id: Int!): Category!
   removeProduct(id: Int!): Product!
   removeRegisterAccount(id: Int!): RegisterAccount!

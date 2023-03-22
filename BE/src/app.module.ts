@@ -23,7 +23,7 @@ import { RegisterAccountModule } from './modules/register-account/register-accou
     AuthModule,
     UserModule,
     ThrottlerAppModule,
-    TwilioAppModule,
+    // TwilioAppModule,
     FileModule,
     CacheSetupModule,
     AppFileModule,

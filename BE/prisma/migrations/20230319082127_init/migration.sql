@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
+CREATE TYPE "RoleE" AS ENUM ('USER', 'ADMIN');
 
 -- CreateEnum
 CREATE TYPE "Status" AS ENUM ('ACTIVE', 'INACTIVE');
@@ -12,7 +12,7 @@ CREATE TABLE "User" (
     "email" TEXT NOT NULL,
     "hashedPassword" TEXT NOT NULL,
     "hashedRefreshToken" TEXT,
-    "role" "Role" DEFAULT 'USER',
+    "role" "RoleE" DEFAULT 'USER',
     "address" TEXT,
     "dob" TIMESTAMP(3),
     "status" "Status" DEFAULT 'ACTIVE',
